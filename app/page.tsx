@@ -123,10 +123,7 @@ return matchesSearch && matchesCategory;
             <h2 className="text-xl font-bold">{product.title}</h2>
             <p>{product.rating.rate.toFixed(1)} <StarRating rating = {product.rating.rate}/> ({product.rating.count})</p> 
             <p className="text-2xl font-bold mt-auto">${product.price.toFixed(2)}</p>
-           
           </article>
-
-
           </Link>
         ))}
       </section>   

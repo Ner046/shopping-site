@@ -3,7 +3,6 @@
 import { readCart, saveCart } from "@/app/lib/cart";
 import { useEffect, useState } from "react";
 
-
 type Product = {
   id: number;
   title: string;
@@ -19,6 +18,7 @@ type CartItem = Product & {
 
 
 export default function AddToCartButton({ product }: { product: Product }) {
+  
 
   const hasSizes = product.category === "men's clothing" || product.category === "women's clothing"
   
@@ -57,7 +57,6 @@ export default function AddToCartButton({ product }: { product: Product }) {
 
     saveCart(updatedCart);
     setQuantity(existingItem ? existingItem.quantity + 1 : 1);
-    
   };
 
   const handleRemoveFromCart = () => {
@@ -119,15 +118,19 @@ return (
           />
           <p>Add to Cart</p>
         </button>
+        
       ) : (
         <div className="flex items-center justify-between gap-3 rounded-2xl border-2 border-black py-2 font-semibold text-black">
+          
+          
           <button
             onClick={handleRemoveFromCart}
             type="button"
             aria-label="Decrease quantity"
             className="px-4 text-2xl"
           >
-            -
+            {quantity == 1? <img src={"/trash.png"} width={20} height={20}/>:"-"}
+         
           </button>
 
           <span>{quantity} in cart</span>

@@ -68,7 +68,6 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
             <p className="text-gray-600">{product.description}</p>
             <p className="text-2xl font-bold">${product.price.toFixed(2)}</p>
             <AddToCartButton product={product}/>
-
             </div>
 
             </section>

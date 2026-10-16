@@ -29,6 +29,7 @@ export default function CartPage() {
 
     saveCart(cart);
   }, [cart, cartLoaded]);
+  
 
   const updateQuantity = (id: number, size:string, change: number) => {
     setCart((prevCart) =>
@@ -55,14 +56,15 @@ export default function CartPage() {
             <div className="flex items-center gap-5">
           
               <img src={item.image} width={64} height={64}></img>
-        
-        
-              <p className=" font-bold leading-none text-[#2d2d2d]">
-                {item.title}
-              </p>
 
-              <p>{item.size}</p>
 
+              <div className="flex flex-col gap-2 font-bold leading-none text-[#2d2d2d]">
+                <p>{item.title}</p>
+                <p className="text-[14px] font-semibold"> {item.size? `Size: ${item.size}`:``}</p>
+
+              </div>
+
+                
             </div>
 
             <div className="flex flex-col items-center gap-5">

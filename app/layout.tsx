@@ -2,11 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
 import SearchForm from "./searchform";
+import CartCounter from "./cartQuantity"
 
 export const metadata: Metadata = {
   title: "My Shopping Site",
   description: "Browse and shop for great products on My Shopping Site.",
 };
+
+
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
@@ -26,6 +29,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
             <Link href="/cart" className="flex items-center gap-2">
               <img src ="/shopping-cart.png" alt="Shopping Cart" width="32" height="32" />
+              
+              <CartCounter/>
+
             </Link>
           </nav>
 

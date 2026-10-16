@@ -19,4 +19,6 @@ export function readCart<T>(){
 
 export function saveCart<T>(items:T[]){
     localStorage.setItem(CART_KEY, JSON.stringify(items))
+    window.dispatchEvent(new Event("cart-updated"));
+
 }
