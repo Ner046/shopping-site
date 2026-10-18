@@ -27,11 +27,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <p>Shop</p>
             </Link>
 
-            <Link href="/cart" className="flex items-center gap-2">
+            <Link href="/cart" className="flex items-center gap-1 text-[16px]">
               <img src ="/shopping-cart.png" alt="Shopping Cart" width="32" height="32" />
-              
-              <CartCounter/>
-
+                My Cart (<CartCounter/> )
             </Link>
           </nav>
 

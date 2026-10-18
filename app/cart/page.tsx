@@ -17,6 +17,8 @@ export default function CartPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartLoaded, setCartLoaded] = useState(false);
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const quantityTotal = cart.reduce((sum, item) => sum + item.quantity, 0);
+
 
   useEffect(() => {
     setCart(readCart<CartItem>());
@@ -45,7 +47,7 @@ export default function CartPage() {
     <main className="mx-auto w-full max-w-4xl px-4 py-8 text-black">
       <section className="mx-auto max-w-3xl">
         <h1 className="mb-5 text-xl md:text-3xl  font-bold tracking-tighter text-[#2b2b2b]">
-           {cart.length === 0 ? "Your cart is empty":`Shopping Cart - ${cart.length} ${cart.length === 1 ? "item":"items"}`}
+           {cart.length === 0 ? "Your cart is empty":`Shopping Cart - ${quantityTotal} ${quantityTotal === 1 ? "item":"items"}`}
         </h1>
 
         {cart.map((item) => (

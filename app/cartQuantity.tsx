@@ -31,6 +31,6 @@ export default function cartCounter() {
 
     const quantityTotal = cart.reduce((sum, item) => sum + item.quantity, 0);
 
-  return <>{quantityTotal}</>;
+  return <>  {quantityTotal}</>;
 
   }
