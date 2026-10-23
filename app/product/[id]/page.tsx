@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import fallbackProducts from "../../backupData/products.json";
 import StarRating from "@/app/starRating";
 import AddToCartButton from "./addCart";
+import Link from "next/link";
 
 
 type Product = {
@@ -53,10 +54,11 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
         <main className="mx-auto w-full max-w-7xl px-6 py-8 text-black" >
 
             <p className="text-gray-900 mb-8 font-semibold text-[0.875rem]">
-                <a href="/" className="hover:text-gray-500 p-4 underline cursor-pointer">
+                <Link href="/" className="hover:text-gray-500 p-4 underline cursor-pointer">
                     Return to home page
-                </a>
+                </Link>
             </p>
+            
 
             <section className ="grid grid-cols-1 md:grid-cols-2 gap-20">
 

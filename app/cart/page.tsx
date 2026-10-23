@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { readCart, saveCart } from "../lib/cart";
+import Link from "next/link";
 
 
 type CartItem = {
@@ -45,13 +46,26 @@ export default function CartPage() {
 
   return (
     <main className="mx-auto w-full max-w-4xl px-4 py-8 text-black">
+      
+      
+    
+          
       <section className="mx-auto max-w-3xl">
-        <h1 className="mb-5 text-xl md:text-3xl  font-bold tracking-tighter text-[#2b2b2b]">
+
+        <Link href="/" className="hover:text-gray-500 underline ">
+          Return to home page
+        </Link>    
+
+        
+        <h1 className="mb-5 text-xl md:text-3xl py-4 font-bold tracking-tighter text-[#2b2b2b]">
            {cart.length === 0 ? "Your cart is empty":`Shopping Cart - ${quantityTotal} ${quantityTotal === 1 ? "item":"items"}`}
         </h1>
 
-        {cart.map((item) => (
-          <div
+        <ul>
+
+           {cart.map((item) => (
+
+          <li
             key={`${item.id}-${item.size}`}
             className="flex items-center justify-between border-t border-black/80 py-5 text-[1rem] md:text-2xl"
           >
@@ -83,6 +97,7 @@ export default function CartPage() {
                 >
                   -
                 </button>
+                
                 <span className="min-w-5 text-center leading-none">{item.quantity}</span>
                 <button
                   onClick={() => updateQuantity(item.id, item.size, 1)}
@@ -94,8 +109,12 @@ export default function CartPage() {
                 </button>
               </div>
             </div>
-          </div>
+          </li>
         ))}
+
+        </ul>
+
+       
 
         <div className={`flex flex-col gap-3 md:flex-row md:items-center justify-between border-t border-black/80 pt-5 ${cart.length === 0 && 'hidden'}`} >
           <button onClick = {()=>setCart([])} className="inline-flex items-center gap-3 text-[1.05rem] text-black" type="button">
@@ -109,9 +128,14 @@ export default function CartPage() {
           
         </div>
 
-        <button className={`mt-6 flex cursor-pointer items-center justify-center gap-3 rounded-full bg-black px-5 py-3 font-semibold text-white hover:bg-gray-800" type="button" ${cart.length === 0 ? 'hidden':''}`}>
-          Proceed to checkout
+        <Link href= "/summary/" >
+        <button 
+        className={`mt-6 flex cursor-pointer items-center justify-center gap-3 rounded-full bg-black px-5 py-3 font-semibold text-white hover:bg-gray-800 type="button" ${cart.length === 0 ? 'hidden':''}`}>
+          Order Summary
         </button>
+        </Link>
+
+
       </section>
     </main>
   );

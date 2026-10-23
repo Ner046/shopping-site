@@ -112,8 +112,12 @@ return matchesSearch && matchesCategory;
         </button>
       </div>
 
-      <section className="grid grid-cols-1 gap-4 pt-6 md:grid-cols-2 lg:grid-cols-3 ">
+      <ul className="grid grid-cols-1 gap-4 pt-6 md:grid-cols-2 lg:grid-cols-3 ">
+
+      
+
         {filteredProducts.map((product) => (
+          <li key={product.id}>
           <Link href={`/product/${product.id}`} key={product.id}>
 
           <article
@@ -124,9 +128,12 @@ return matchesSearch && matchesCategory;
             <p>{product.rating.rate.toFixed(1)} <StarRating rating = {product.rating.rate}/> ({product.rating.count})</p> 
             <p className="text-2xl font-bold mt-auto">${product.price.toFixed(2)}</p>
           </article>
+          
+          
           </Link>
+          </li>  
         ))}
-      </section>   
+      </ul>   
     </main>
   );
 }
