@@ -52,7 +52,7 @@ export default function CartPage() {
           
       <section className="mx-auto max-w-3xl">
 
-        <Link href="/" className="hover:text-gray-500 underline ">
+        <Link href="/" className="hover:text-gray-500 underline text-gray-900 mb-8 font-semibold text-[0.875rem]">
           Return to home page
         </Link>    
 
@@ -67,7 +67,7 @@ export default function CartPage() {
 
           <li
             key={`${item.id}-${item.size}`}
-            className="flex items-center justify-between border-t border-black/80 py-5 text-[1rem] md:text-2xl"
+            className="flex items-center justify-between  border-t-2 last:border-b-2 border-gray-300 py-8 text-[1rem] "
           >
             <div className="flex items-center gap-5">
           
@@ -83,7 +83,7 @@ export default function CartPage() {
                 
             </div>
 
-            <div className="flex flex-col items-center gap-5">
+            <div className="flex flex-col items-center gap-3">
               <p className="font-bold leading-none text-[#2d2d2d]">
                 ${item.price.toFixed(2)}
               </p>
@@ -119,18 +119,18 @@ export default function CartPage() {
         <div className={`flex flex-col gap-3 md:flex-row md:items-center justify-between border-t border-black/80 pt-5 ${cart.length === 0 && 'hidden'}`} >
           <button onClick = {()=>setCart([])} className="inline-flex items-center gap-3 text-[1.05rem] text-black" type="button">
             <img src="/trash.png" alt="Trash Can" width="22" height="22" />
-            <span>Empty your cart</span>
+            <span className="text-[0.9rem] md:text-[1rem]">Empty your cart</span>
           </button>
 
-          <p className="text-[1.1rem] font-bold text-[#2d2d2d]">
-            Subtotal: ${subtotal.toFixed(2)}
+          <p className="text-[0.9rem] md:text-[1rem] font-bold text-[#2d2d2d]">
+            Total: ${subtotal.toFixed(2)}
           </p>
           
         </div>
 
         <Link href= "/summary/" >
         <button 
-        className={`mt-6 flex cursor-pointer items-center justify-center gap-3 rounded-full bg-black px-5 py-3 font-semibold text-white hover:bg-gray-800 type="button" ${cart.length === 0 ? 'hidden':''}`}>
+        className={`mt-6 flex cursor-pointer items-center justify-center text-[14px] md:text-[16px] gap-3 rounded-full bg-black px-5 py-3 font-semibold text-white hover:bg-gray-800 type="button" ${cart.length === 0 ? 'hidden':''}`}>
           Order Summary
         </button>
         </Link>

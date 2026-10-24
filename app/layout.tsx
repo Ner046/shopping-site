@@ -18,16 +18,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
       <body className="min-h-screen grid grid-rows-[auto_1fr_auto] gap-10 bg-[#F7F5F5]">
 
-         <header className=" grid gap-4 bg-[#D2CCCC] px-16 py-6  md:px-14 md:py-4">
+         <header className=" grid gap-4 bg-[#D2CCCC] px-7 py-6  md:px-14 md:py-4">
 
           <nav className="flex items-center justify-between ">
             
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 text-[14px] md:text-[16px]">
               <img src ="/logo.svg" alt="My Shopping Site Logo" width="40" height="40" />
               <p>Shop</p>
             </Link>
 
-            <Link href="/cart" className="flex items-center gap-1 text-[16px]">
+            <Link href="/cart" className="flex items-center gap-1 text-[13px] md:text-[16px]">
               <img src ="/shopping-cart.png" alt="Shopping Cart" width="32" height="32" />
                 My Cart (<CartCounter/> )
             </Link>
