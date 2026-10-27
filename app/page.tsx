@@ -25,6 +25,9 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [category, setCategory] = useState("all");
   const search = (searchParams.get("query") ?? "").trim().toLowerCase();
+  const [sort, setSort] = useState("")
+
+  console.log(sort)
 
 
 
@@ -53,11 +56,22 @@ export default function Home() {
   }, []);
 
 
-  console.log (products)
 
 
+  useEffect(() => {
+  const savedSort = sessionStorage.getItem("product-sort");
 
-  const allowedCategories = ["men's clothing", "women's clothing", "jewelery"];
+  if (savedSort !== null) {
+    setSort(savedSort);
+  }
+}, []);
+
+
+  
+  
+  
+  
+const allowedCategories = ["men's clothing", "women's clothing", "jewelery"];
 
 const filteredProducts = products.filter((product) => {
   
@@ -78,6 +92,22 @@ return matchesSearch && matchesCategory;
 
 });
 
+  const sortedProducts = [...filteredProducts].sort((a,b)=>{
+    switch(sort){
+      case "price-low-high": return a.price - b.price;
+      case "price-high-low": return b.price - a.price;
+      case "name-a-z": return a.title.localeCompare(b.title)
+      case "name-z-a": return b.title.localeCompare(a.title);
+      case "highest-rated": return b.rating.rate - a.rating.rate;
+      default: return 0;
+      
+    }
+    
+    
+
+  })
+
+
   if (loading) {
     return (
       <div className="flex min-h-screen items-center justify-center">
@@ -97,7 +127,8 @@ return matchesSearch && matchesCategory;
         </p>
       </section>
 
-      <div className="flex flex-col md:flex-row md:flex-wrap justify-center gap-4 pt-6">
+
+      <div className="flex flex-col md:flex-row gap-5 justify-center">
         <button onClick={()=>setCategory("all")} className={`cursor-pointer rounded-2xl border-2 border-black px-4 py-2 font-bold text-black hover:bg-black hover:text-white ${category === "all" ? "bg-black text-white" : ""}`}>
           All Products
         </button>
@@ -112,11 +143,35 @@ return matchesSearch && matchesCategory;
         </button>
       </div>
 
+<div className="mt-5 flex items-center gap-3">
+  <label htmlFor="sort" className="text-sm font-medium text-gray-700">
+    Sort by:
+  </label>
+  
+  <select
+    id="sort"
+    value={sort}
+     onChange={(event) => {
+    const nextSort = event.target.value;
+    setSort(nextSort);
+    sessionStorage.setItem("product-sort", nextSort);
+  }}
+    className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm"
+  >
+    <option value="">Default Order</option>
+    <option value="price-low-high">Price: Low to High</option>
+    <option value="price-high-low">Price: High to Low</option>
+    <option value="name-a-z">Name: A to Z</option>
+    <option value="name-z-a">Name: Z to A</option>
+    <option value="highest-rated">Rating: Highest First</option>
+  </select>
+</div>
+
+
       <ul className="grid grid-cols-1 gap-4 pt-6 md:grid-cols-2 lg:grid-cols-3 ">
 
-      
 
-        {filteredProducts.map((product) => (
+        {sortedProducts.map((product) => (
           <li key={product.id}>
           <Link href={`/product/${product.id}`} key={product.id}>
 
@@ -129,7 +184,6 @@ return matchesSearch && matchesCategory;
             <p className="text-2xl font-bold mt-auto">${product.price.toFixed(2)}</p>
           </article>
           
-          
           </Link>
           </li>  
         ))}
@@ -137,4 +191,3 @@ return matchesSearch && matchesCategory;
     </main>
   );
 }
-

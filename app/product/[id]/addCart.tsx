@@ -81,9 +81,14 @@ export default function AddToCartButton({ product }: { product: Product }) {
 
 return (
 
+  
+
  <div className="mt-4 flex flex-col gap-4">
+
+    <p className="text-[14px] font-semibold">Select Size:</p>
+
     {hasSizes && (
-      <div aria-label="Choose a size" className="flex gap-2">
+      <div aria-label="Choose a size" className="flex gap-2 items-center">
         {sizes.map((option) => (
           <button
             key={option}

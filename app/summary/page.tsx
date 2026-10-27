@@ -69,7 +69,7 @@ export default function orderSummary() {
               
             <div className="flex flex-col md:ml-auto gap-5">
               <p className="font-bold leading-none text-[#2d2d2d] text-[0.9rem]">
-                ${item.price.toFixed(2)} x {item.quantity} = ${item.price * item.quantity} 
+                ${item.price.toFixed(2)} x {item.quantity} = ${(item.price * item.quantity).toFixed(2)}
               </p>
               </div>
 

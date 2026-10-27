@@ -116,7 +116,7 @@ export default function CartPage() {
 
        
 
-        <div className={`flex flex-col gap-3 md:flex-row md:items-center justify-between border-t border-black/80 pt-5 ${cart.length === 0 && 'hidden'}`} >
+        <div className={`flex flex-col gap-3 md:flex-row md:items-center justify-between pt-5 ${cart.length === 0 && 'hidden'}`} >
           <button onClick = {()=>setCart([])} className="inline-flex items-center gap-3 text-[1.05rem] text-black" type="button">
             <img src="/trash.png" alt="Trash Can" width="22" height="22" />
             <span className="text-[0.9rem] md:text-[1rem]">Empty your cart</span>
