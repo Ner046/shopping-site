@@ -40,8 +40,6 @@ export default async function ProductDetailsPage({ params }: { params: Promise<{
 
     product = await res.json() as Product;
     
-    console.log(product)
-
     } catch (error) {
         console.warn(`Could not load product ${id} from FakeStoreAPI; using fallback data.`, error);
     }

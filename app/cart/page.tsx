@@ -42,13 +42,9 @@ export default function CartPage() {
     );
   };
 
-  console.log(cart)
-
   return (
     <main className="mx-auto w-full max-w-4xl px-4 py-8 text-black">
       
-      
-    
           
       <section className="mx-auto max-w-3xl">
 
@@ -75,8 +71,8 @@ export default function CartPage() {
 
 
               <div className="flex flex-col gap-2 font-bold leading-none text-[#2d2d2d]">
-                <p>{item.title}</p>
-                <p className="text-[14px] font-semibold"> {item.size? `Size: ${item.size}`:``}</p>
+                <p className="text-[14px] md:text-[18px]">{item.title}</p>
+                <p className="text-[12px] md:text-[16px] font-semibold"> {item.size? `Size: ${item.size}`:``}</p>
 
               </div>
 

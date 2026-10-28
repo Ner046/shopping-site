@@ -27,15 +27,9 @@ export default function orderSummary() {
   const [order, setOrder] = useState<OrderItem[]>([])
     const subtotal = order.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-
-
-      console.log ("Hello world")
-
-
    useEffect(() => {
       setOrder(readCart<OrderItem>());
     }, []);
-    console.log (order)
 
 
   return (
@@ -56,13 +50,13 @@ export default function orderSummary() {
            {order.map((item)=>(
           
 
-            <li key={`${item.id}-${item.size}`}  className="flex flex-col md:flex-row gap-5 border-t-2 last:border-b-2 border-gray-300 py-8 ">
+            <li key={`${item.id}-${item.size}`}  className="flex flex-col md:flex-row gap-5 border-t-2 last:border-b-2 border-gray-300 py-8">
           
               <img alt="" src={item.image} width={64} className="aspect-square"></img>
 
 
               <div className="flex flex-col gap-2 font-bold leading-none text-[#2d2d2d]">
-                <p className="max-w-100">{item.title}</p>
+                <p className="max-w-100 text-[14px] md:text-[18px]">{item.title}</p>
                 <p className="text-[14px] font-semibold"> {item.size? `Size: ${item.size}`:``}</p>
               </div>
 

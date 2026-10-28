@@ -85,7 +85,7 @@ return (
 
  <div className="mt-4 flex flex-col gap-4">
 
-    <p className="text-[14px] font-semibold">Select Size:</p>
+    <p className="text-[14px] font-semibold">{hasSizes? "Select Size:":""}</p>
 
     {hasSizes && (
       <div aria-label="Choose a size" className="flex gap-2 items-center">
@@ -112,7 +112,7 @@ return (
         <button
           type="button"
           onClick={handleAddToCart}
-          className="flex items-center justify-center gap-3 rounded-2xl bg-black px-4 py-2 font-semibold text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex items-center justify-center gap-3 rounded-2xl bg-black px-4 py-2 font-semibold text-white hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50 text-[18px]"
         >
           <img
             src="/shopping-cart.png"
@@ -132,7 +132,7 @@ return (
             onClick={handleRemoveFromCart}
             type="button"
             aria-label="Decrease quantity"
-            className="px-4 text-2xl"
+            className="px-4 text-[18px]"
           >
             {quantity == 1? <img src={"/trash.png"} width={20} height={20}/>:"-"}
          
@@ -144,7 +144,7 @@ return (
             onClick={handleAddToCart}
             type="button"
             aria-label="Increase quantity"
-            className="px-4 text-2xl"
+            className="px-4 text-[18px]"
           >
             +
           </button>

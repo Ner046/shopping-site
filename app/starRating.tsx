@@ -2,7 +2,6 @@ export default function starRating({rating}: {rating:number}){
 
     const safeRating = Math.max(0, Math.min(5, rating));
 
-
   return (
     <span role="img" aria-label={`Rating: ${safeRating} out of 5`}>
       {[0, 1, 2, 3, 4].map((starPosition) => {

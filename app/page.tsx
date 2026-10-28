@@ -27,9 +27,6 @@ export default function Home() {
   const search = (searchParams.get("query") ?? "").trim().toLowerCase();
   const [sort, setSort] = useState("")
 
-  console.log(sort)
-
-
 
   useEffect(() => {
     async function loadProducts() {
@@ -42,11 +39,10 @@ export default function Home() {
 
         const data: Product[] = await res.json();
         setProducts(data);
-        console.info("Live data successfully loaded from FakeStoreAPI.")
-        
       } catch (error) {
         console.warn("FakeStoreAPI is down. Recovering with fallbackProducts data:", error);
           setProducts(fallbackProducts); 
+
       } finally {
         setLoading(false);
       }
@@ -56,28 +52,31 @@ export default function Home() {
   }, []);
 
 
-
-
   useEffect(() => {
   const savedSort = sessionStorage.getItem("product-sort");
 
   if (savedSort !== null) {
     setSort(savedSort);
   }
+
+  const savedCategory = sessionStorage.getItem("product-category");
+
+  if (savedCategory !== null) {
+  setCategory(savedCategory);
+}
+
+
+
 }, []);
 
 
-  
-  
-  
   
 const allowedCategories = ["men's clothing", "women's clothing", "jewelery"];
 
 const filteredProducts = products.filter((product) => {
   
   
-  const matchesSearch = search.trim() === "" || product.title.toLowerCase().includes(search.toLowerCase());
-  
+const matchesSearch = search.trim() === "" || product.title.toLowerCase().includes(search.toLowerCase());
   
   const matchesCategory = 
   category === "all" ? allowedCategories.includes(product.category) :
@@ -100,13 +99,9 @@ return matchesSearch && matchesCategory;
       case "name-z-a": return b.title.localeCompare(a.title);
       case "highest-rated": return b.rating.rate - a.rating.rate;
       default: return 0;
-      
     }
     
-    
-
   })
-
 
   if (loading) {
     return (
@@ -129,19 +124,20 @@ return matchesSearch && matchesCategory;
 
 
       <div className="flex flex-col md:flex-row gap-5 justify-center">
-        <button onClick={()=>setCategory("all")} className={`cursor-pointer rounded-2xl border-2 border-black px-4 py-2 font-bold text-black hover:bg-black hover:text-white ${category === "all" ? "bg-black text-white" : ""}`}>
+        <button onClick={()=>{setCategory("all"); sessionStorage.setItem("product-category", "all") }} className={`cursor-pointer rounded-2xl border-2 border-black px-4 py-2 font-bold text-black hover:bg-black hover:text-white ${category === "all" ? "bg-black text-white" : ""}`}>
           All Products
         </button>
-        <button onClick={()=>setCategory("men")} className={`cursor-pointer rounded-2xl border-2 border-black px-4 py-2 font-bold text-black hover:bg-black hover:text-white  ${category === "men" ? "bg-black text-white" : ""}`}>
+        <button onClick={()=>{setCategory("men"); sessionStorage.setItem("product-category", "men");}} className={`cursor-pointer rounded-2xl border-2 border-black px-4 py-2 font-bold text-black hover:bg-black hover:text-white  ${category === "men" ? "bg-black text-white" : ""}`}>
           Men Clothing
         </button>
-        <button onClick={()=>setCategory("women")} className={`cursor-pointer rounded-2xl border-2 border-black px-4 py-2 font-bold text-black hover:bg-black hover:text-white ${category === "women" ? "bg-black text-white" : ""}`}>
+        <button onClick={()=>{setCategory("women"); sessionStorage.setItem("product-category", "women");}} className={`cursor-pointer rounded-2xl border-2 border-black px-4 py-2 font-bold text-black hover:bg-black hover:text-white ${category === "women" ? "bg-black text-white" : ""}`}>
           Women Clothing
         </button>
-        <button onClick={()=>setCategory("jewelery")} className={`cursor-pointer rounded-2xl border-2 border-black px-4 py-2 font-bold text-black hover:bg-black hover:text-white ${category === "jewelery" ? "bg-black text-white" : ""}`}>
+        <button onClick={()=>{setCategory("jewelery"); sessionStorage.setItem("product-category", "jewelery");}} className={`cursor-pointer rounded-2xl border-2 border-black px-4 py-2 font-bold text-black hover:bg-black hover:text-white ${category === "jewelery" ? "bg-black text-white" : ""}`}>
           Jewelry
         </button>
       </div>
+      
 
 <div className="mt-5 flex items-center gap-3">
   <label htmlFor="sort" className="text-sm font-medium text-gray-700">
@@ -166,7 +162,6 @@ return matchesSearch && matchesCategory;
     <option value="highest-rated">Rating: Highest First</option>
   </select>
 </div>
-
 
       <ul className="grid grid-cols-1 gap-4 pt-6 md:grid-cols-2 lg:grid-cols-3 ">
 
