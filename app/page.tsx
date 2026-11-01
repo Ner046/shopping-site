@@ -1,9 +1,10 @@
 "use client";
 import { Suspense,useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import StarRating from "./starRating";
 import fallbackProducts from "./backupData/products.json"
 import Link from "next/link";
+
 
 type Product = {
   id: number;
@@ -26,6 +27,7 @@ function HomeContent() {
   const [category, setCategory] = useState("all");
   const search = (searchParams.get("query") ?? "").trim().toLowerCase();
   const [sort, setSort] = useState("")
+  const router = useRouter();
 
 
   useEffect(() => {
@@ -163,7 +165,29 @@ return matchesSearch && matchesCategory;
   </select>
 </div>
 
+
+{sortedProducts.length === 0 ? (
+  <div className="py-12 text-center">
+    <p className="text-2xl text-gray-500">No products found.</p>
+    <button
+      type="button"
+      onClick={() => {
+        setCategory("all");
+        setSort("");
+        router.replace("/");
+        sessionStorage.removeItem("product-category");
+        sessionStorage.removeItem("product-sort");
+      }}
+      className="mt-4 rounded-lg bg-black px-4 py-2 text-white hover:bg-gray-800"
+    >
+      Reset Filters
+    </button>
+  </div>
+) : (
+  
+
       <ul className="grid grid-cols-1 gap-4 pt-6 md:grid-cols-2 lg:grid-cols-3 ">
+
 
 
         {sortedProducts.map((product) => (
@@ -182,7 +206,8 @@ return matchesSearch && matchesCategory;
           </Link>
           </li>  
         ))}
-      </ul>   
+      </ul> 
+    )}  
     </main>
   );
 }
