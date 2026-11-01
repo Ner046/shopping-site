@@ -2,7 +2,7 @@
 Shopping website created by following a figma created design, fully interactive shopping site with multiple features to ensure a seemless shopping experience, the technologies that were used are Next JS and Twilwind
 
 ## Live Demo
-[View Live Demo] ()
+[View Live Demo] (https://shopping-site-9805km1ep-ner046.vercel.app/)
 
 ## Screenshots
 - Desktop Design
