@@ -6,10 +6,10 @@ Shopping website created by following a figma created design, fully interactive 
 
 ## Screenshots
 - Desktop Design
-![Desktop](/shop_desktop.png)
+![Desktop](./shop_desktop.png)
 
 - Mobile Design
-![Mobile](/shop_mobile.png)
+![Mobile](./shop_mobile.png)
 
 
 ## Features
