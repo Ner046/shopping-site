@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Suspense,useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import StarRating from "./starRating";
 import fallbackProducts from "./backupData/products.json"
@@ -19,7 +19,7 @@ type Product = {
 };
 
 
-export default function Home() {
+function HomeContent() {
   const searchParams = useSearchParams();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -184,5 +184,13 @@ return matchesSearch && matchesCategory;
         ))}
       </ul>   
     </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }

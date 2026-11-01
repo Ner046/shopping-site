@@ -3,6 +3,7 @@ import "./globals.css";
 import Link from "next/link";
 import SearchForm from "./searchform";
 import CartCounter from "./cartQuantity"
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "My Shopping Site",
@@ -33,7 +34,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </Link>
           </nav>
 
-          <SearchForm />
+          <Suspense fallback={<div className="h-14 w-full" />}>
+            <SearchForm />
+          </Suspense>
 
         </header>
 
